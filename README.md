@@ -1,27 +1,35 @@
-# DuemintChallenge
+# Desafío de Código para Duemint
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.7.
+## Acerca de este proyecto 🚀
 
-## Development server
+Este es un desafío técnico que hice para postular al cargo de Front-end Developer. Esta mini app emula un formulario para guardar tarjetas de crédito.
+El proyecto esta realizado con el framework Angular v11 y otras herramientas como Bootstrap para dar estilo a la mini app.
+El desafío principal era obtener los datos del formulario y mostrarlo a los usuarios con el estilo y la animación requerida, de forma que muestre la tarjeta actualizada en tiempo real para que los usuarios puedan comprobarla facilmente.
+[Referencia-de-diseño](https://user-images.githubusercontent.com/26169103/168935673-ece48d11-12a3-4238-b6bc-cad4d33218ee.gif)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Cómo probarlo 🔧
 
-## Code scaffolding
+_Pasos para instalar la app_
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Descargue este proyecto e ingrese a la carpeta duemint-challenge, una vez dentro inicie una nueva ventana de comandos (git bash), a continuación ejecute lo siguiente:
 
-## Build
+```
+$npm install 
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Siguiente
 
-## Running unit tests
+```
+$ng serve
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+La app podrá ser probada en el puerto 4200 (<http://localhost:4200/>)
 
-## Running end-to-end tests
+_Importante: Debe tener instalado Angular de forma global para ejecutar el servidor_
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Si lo desea puede entrar directamente al demo de la mini app aquí 👉 [Duemint-Card-Challenge]( https://duemint-challenge.herokuapp.com/)
 
-## Further help
+## Codeado por ✒️
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* **Mariel Quezada** - _Developer_ - [Marielk](https://github.com/Marielk)
+:woman: :computer:.
