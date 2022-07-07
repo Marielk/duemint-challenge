@@ -1,0 +1,27 @@
+<app-credit-card></app-credit-card>
+<div class="thumbnail">
+    <form #cardData="ngForm" (ngSubmit)="onSubmit(cardData)" novalidate>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Card Number</label>
+            <input type="number" class="form-control" name="cardNumber" ngModel required #first="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Card Name</label>
+            <input type="text" class="form-control" name="cardName" ngModel required #first="ngModel">
+        </div>
+        
+            <div class="col-6">
+                <select>
+                    <option>1</option>
+                </select>
+            </div>
+            <div class="col-6">
+                <label for="cvv">CVV</label>
+                <input type="number" class="form-control" name="cvv" ngModel>
+            </div>
+        
+            <button class="btn btn-primary btn-lg">Submit</button>
+        </form>
+</div>
+
+

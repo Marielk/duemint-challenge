@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import{FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { CardFormComponent } from './components/card-form/card-form.component';
+import { CreditCardComponent } from './components/credit-card/credit-card.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CardFormComponent,
+    CreditCardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

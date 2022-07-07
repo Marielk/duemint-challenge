@@ -1,6 +1,6 @@
 {
   "name": "duemint-challenge",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "heroku-postbuild": "ng build --prod"
+    "postinstall": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~11.2.8",
     "@angular/platform-browser-dynamic": "~11.2.8",
     "@angular/router": "~11.2.8",
+    "bootstrap": "^3.4.1",
+    "jquery": "^3.6.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
@@ -43,8 +45,8 @@
     "tslint": "~6.1.0",
     "typescript": "~4.1.5"
   },
-  "engines": { 
-    "node": "14.15.1", 
-    "npm": "6.14.8" 
+  "engines": {
+    "node": "14.15.1",
+    "npm": "6.14.8"
   }
 }
