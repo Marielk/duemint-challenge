@@ -1,11 +1,36 @@
 .thumbnail {
   padding: 25px;
+  width: 500px;
+  height: 500px;
   border-radius: 10px;
+  min-width: 300px;
+  max-width: 600px;
+  -webkit-box-shadow: -2px 27px 53px -13px rgba(67,77,92,0.6);
+  -moz-box-shadow: -2px 27px 53px -13px rgba(67,77,92,0.6);
+  box-shadow: -2px 27px 53px -13px rgba(67,77,92,0.6);
 }
 
 form {
   padding-top: 35%;
   padding-bottom: 5%;
+}
+.row-dates {
+  display: flex;
+  justify-content: space-between;
+}
+#CVV-label {
+  text-align: start;
+  width: 27%;
+}
+
+.select-wrapper {
+  width: 100%;
+}
+
+select {
+  width: 40%;
+  display: inline;
+  margin: 1%;
 }
 
 label {
@@ -15,4 +40,19 @@ label {
 .btn-lg {
   margin-top: 3%;
   width: 100%;
+  background-color: #0055D4;
+  -webkit-box-shadow: 1px 18px 37px -7px rgba(0,85,212,0.33);
+  -moz-box-shadow: 1px 18px 37px -7px rgba(0,85,212,0.33);
+  box-shadow: 1px 18px 37px -7px rgba(0,85,212,0.33);
+}
+
+#CVV-input {
+  width: 35%;
+  margin: 3px;
+}
+/* card */
+.card-container {
+  z-index: 3;
+  position: absolute;
+  top: 40px;
 }

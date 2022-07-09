@@ -1,27 +1,44 @@
-<app-credit-card></app-credit-card>
+<app-credit-card class="card-container" 
+[updateCardNumber]="cardNumberUpdated"
+[updateCardName]="cardNameUpdated"
+[updateExpDate]="cardExpDateUpdated"
+[updateCVV]="cardCVVUpdated"
+[deletLastCharacter]="deletLastCharacterUpdate"
+[cardType]= "cardTypeUpdated"
+[updateDeletNumber] = "deletNumber"
+>
+</app-credit-card>
 <div class="thumbnail">
-    <form #cardData="ngForm" (ngSubmit)="onSubmit(cardData)" novalidate>
+    <form [formGroup]="cardData" (ngSubmit)="onSubmit(cardData)" novalidate>
         <div class="form-group">
-            <label for="exampleInputEmail1">Card Number</label>
-            <input type="number" class="form-control" name="cardNumber" ngModel required #first="ngModel">
+            <label for="cardNumber">Card Number</label>
+            <input type="tel" maxlength="20" class="form-control" formControlName="cardNumber" required
+            (keyup)="getNewCardNumberValue($event)" >
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1">Card Name</label>
-            <input type="text" class="form-control" name="cardName" ngModel required #first="ngModel">
+            <label for="cardName">Card Name</label>
+            <input type="text" class="form-control" formControlName="cardName" required (keydown)="detectBackSpaceName($event)">
         </div>
-        
-            <div class="col-6">
-                <select>
-                    <option>1</option>
-                </select>
+        <div class="form-group">
+            <div class="row-dates">
+                <label for="expiringMonth">Expiration date</label>
+                <label id="CVV-label" for="cvv">CVV</label>
             </div>
-            <div class="col-6">
-                <label for="cvv">CVV</label>
-                <input type="number" class="form-control" name="cvv" ngModel>
+            <div class="row-dates">
+                <div class="select-wrapper">
+                    <select class="form-control" [formControl]="cardData.get('expiration').get('expiringMonth')" required>
+                        <option *ngFor="let month of months">{{month}}</option>
+                    </select>
+                    <select class="form-control" [formControl]="cardData.get('expiration').get('expiringYear')" required>
+                        <option *ngFor="let year of years">{{year}}</option>
+                    </select>
+                </div>
+
+                <input type="tel" class="form-control" formControlName="cvv" name="cvv" id="CVV-input" maxlength="3">
             </div>
-        
-            <button class="btn btn-primary btn-lg">Submit</button>
-        </form>
+
+        </div>
+
+        <button class="btn btn-primary btn-lg">Submit</button>
+    </form>
 </div>
-
-

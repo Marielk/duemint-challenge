@@ -1,1 +1,49 @@
-<p>credit-card works!</p>
+<div [ngClass]="[cardAnimatedClass]" id="animatedCard" #animatedCard>
+  <!-- cara frontal -->
+  <div class="card-front">
+    <span [ngClass]="[animatedBorderClass]" id="animatedBorder" #animatedBorder></span>
+    <div class="row-card-content">
+      <img id="holo-img" src="../../../assets/holo.png">
+      <div>
+        <img [ngClass]="cardLogoClass" [src]='cardLogoPath'>
+      </div>
+    </div>
+    <div class="row-card-content card-number-wrapper">
+      <p class="card-number" #cardNumberPlace>
+      </p>
+    </div>
+    <div class="bottom-info-wrapper">
+      <div class="row-card-content bottom-info-labels">
+        <p>Card holder</p>
+        <p>Expires</p>
+      </div>
+      <div class="row-card-content">
+        <p class="card-holder-name" #cardNamePlace>
+          <span class="name-placeholder">{{cardName}}</span>
+        </p>
+        <p>
+          <span id="monthPlaceholder" class="start" #monthPlaceholder>MM</span>
+          <span id="yearPlaceholder" class="start" #yearPlaceholder>YY</span>
+        </p>
+        <p>
+          <span id="monthContent" class="data-start" #monthContent>{{ expMonth }}</span>
+          <span id="yearContent" class="data-start" #yearContent>{{ expYear }}</span>
+        </p>
+        <p id="separator">/</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- cara trasera -->
+  <div class="card-back">
+    <div class="row-card-content">
+      <p class="bottom-info-labels" id="cvv-label-card">CVV</p>
+    </div>
+    <div class="row-card-content" [formGroup]="cvvInputGroup">
+      <input type="password" id="cvv-input-show" formControlName="cvvShow">
+    </div>
+    <div class="back-logo-wrapper">
+      <img [ngClass]="cardLogoClass" [src]='cardLogoPath'>
+    </div>
+  </div>
+</div>

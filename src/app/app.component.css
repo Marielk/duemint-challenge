@@ -1,11 +1,14 @@
+
 .main{
     display: flex;
     justify-content: center;
     padding-top: 10%;
-    height: 100vh;
-    background-color: lightblue;
+    height: 100%;
+    background-color: #D1E8FA;
 }
 
 .form-container{
     width: 50%;
+    display: flex;
+    justify-content: center;
 }

@@ -27,7 +27,7 @@ La app podrá ser probada en el puerto 4200 (<http://localhost:4200/>)
 
 _Importante: Debe tener instalado Angular de forma global para ejecutar el servidor_
 
-Si lo desea puede entrar directamente al demo de la mini app aquí 👉 [Duemint-Card-Challenge]( https://duemint-challenge.herokuapp.com/)
+Si lo desea puede obtener números de tarjetas de crédito para probar la mini app aquí 👉 [Paypal-examples]( https://www.paypalobjects.com/en_GB/vhelp/paypalmanager_help/credit_card_numbers.htm/)
 
 ## Codeado por ✒️
 

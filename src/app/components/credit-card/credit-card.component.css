@@ -1,0 +1,313 @@
+.card {
+  background-color: black;
+  color: white;
+  height: 220px;
+  width: 390px;
+  border-radius: 10px;
+  -webkit-box-shadow: -2px 15px 40px 3px rgba(39,20,55,0.5);
+  -moz-box-shadow: -2px 15px 40px 3px rgba(39,20,55,0.5);
+  box-shadow: -2px 15px 40px 3px rgba(39,20,55,0.5);
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+
+.card-front {
+  background-image: url('../../../assets/card_background_front.png');
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background-size: cover;
+}
+.card-back {
+  background-image: url('../../../assets/card_background_back.png');
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  position: absolute;
+  top: 0px;
+  background-size: cover;
+}
+
+.card-animation {
+  transform: rotateY(180deg);
+}
+
+#holo-img {
+  width: 40px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.amex-logo {
+  width: 50px;
+}
+.diners-logo {
+  width: 120px;
+  margin-bottom: 18px;
+}
+.master-logo {
+  width: 55px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+.discover-logo {
+  width: 80px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+.visa-logo {
+  width: 60px;
+  height: 34px;
+  margin-bottom: 16px;
+}
+
+.back-logo-wrapper {
+  display: flex;
+  justify-content: end;
+  margin-top: 15px;
+}
+
+.row-card-content {
+  margin: 0px;
+  display: flex;
+  justify-content: space-between;
+}
+.card-number {
+  position: absolute;
+}
+
+.card-number-wrapper {
+  margin-top: 11px;
+  margin-bottom: 72px;
+  font-size: 30px;
+}
+.bottom-info-labels {
+  font-size: small;
+  color: #DCE1E4;
+}
+
+#cvv-label-card {
+  margin-top: 60px;
+  text-align: right;
+  width: 100%;
+}
+
+#cvv-input-show {
+  width: 100%;
+  border-radius: 5px;
+  height: 40px;
+  text-align: right;
+  color: black;
+  font-size: medium;
+}
+
+/* border animation */
+
+#animatedBorder {
+  border: 1px solid white;
+  background-color: transparent;
+  position: absolute;
+  border-radius: 5px;
+}
+.start-position {
+  width: 350px;
+  height: 45px;
+  top: 80px;
+  right: 23px;
+}
+.hidde {
+  visibility: hidden;
+}
+.show {
+  visibility: visible;
+}
+.move-to-number-place {
+  animation-duration: 1s;
+  animation-name: moving-to-number;
+  animation-fill-mode: forwards;
+}
+
+.move-to-name-place {
+  animation-duration: 1s;
+  animation-name: moving-to-name;
+  animation-fill-mode: forwards;
+}
+.move-to-date-place {
+  animation-duration: 1s;
+  animation-name: moving-to-date;
+  animation-fill-mode: forwards;
+}
+
+@keyframes moving-to-name {
+  from {
+    width: 350px;
+    height: 45px;
+    top: 80px;
+    right: 23px;
+  }
+
+  to {
+    width: 260px;
+    height: 51px;
+    top: 152px;
+    right: 115px;
+  }
+}
+
+@keyframes moving-to-date {
+  from {
+    width: 260px;
+    height: 51px;
+    top: 152px;
+    right: 115px;
+  }
+
+  to {
+    width: 75px;
+    height: 51px;
+    top: 152px;
+    right: 7px;
+  }
+}
+
+/* date animation */
+#monthPlaceholder {
+  position: absolute;
+  right: 56px;
+}
+
+#yearPlaceholder {
+  position: absolute;
+  right: 20px;
+}
+.start {
+  top: 182px;
+  opacity: 1; 
+  transition: opacity 1s ease;
+}
+.data-start {
+  top: 100px;
+  opacity: 0; 
+  transition: opacity 1s ease;
+}
+
+#separator {
+  position: absolute;
+  right: 44px;
+}
+
+.animate-date-out {
+  opacity: 0;
+  animation-duration: 1s;
+  animation: date-fade-out;
+  animation-fill-mode: forwards;
+}
+.animate-date-in {
+  opacity: 1;
+  animation-duration: 1s;
+  animation: date-fade-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes date-fade-out {
+  0% {
+    top: 182px;
+  }
+  100% {
+    top: 170px;
+  }
+}
+@keyframes date-fade-in {
+  from {
+    top: 100px;
+  }
+  to {
+    top: 182px;
+  }
+}
+
+#monthContent {
+  position: absolute;
+  right: 56px;
+}
+
+#yearContent {
+  position: absolute;
+  right: 20px;
+}
+
+/* card holder animation */
+.card-holder-name {
+  position: absolute;
+  left: 10px;
+}
+
+.name-placeholder {
+  position: relative;
+  left: 10px;
+}
+
+span.card-holder-name-span {
+  text-transform: uppercase;
+  animation: waviy 0.5s forwards;
+  opacity: 0;
+  transition: opacity, rotate 1s ease;
+  position: absolute;
+  animation-delay: calc(.1s * var(--i));
+  transform-origin: 50% 100%;
+}
+
+span.card-number-span {
+  animation: card-digits-animation 0.5s forwards;
+  transition: opacity 1s ease;
+  position: absolute;
+  opacity: 0;
+}
+span.card-number-span-hash {
+  animation: card-hash-animation 0.5s forwards;
+  transition: opacity 1s ease;
+  position: absolute;
+  opacity: 0;
+}
+
+@keyframes waviy {
+  0%{
+    opacity: 0;
+  }
+  50%{
+    transform: rotate(20deg);
+  }
+  100%{
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes card-digits-animation {
+  0%,40%,100% {
+    transform: translateY(0)
+  }
+  20% {
+    transform: translateY(-15px)
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes card-hash-animation {
+  0%,40%,100% {
+    transform: translateY(0px)
+  }
+  20% {
+    transform: translateY(15px)
+  }
+  100%{
+    opacity: 1;
+  }
+}
