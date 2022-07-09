@@ -32,15 +32,15 @@ export class CardFormComponent implements OnInit, OnDestroy {
     this.initCardForm();
   }
   ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe())
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  onSubmit(cardData: FormGroup) {
-    // send the information 
+  onSubmit(cardData: FormGroup): void {
+    // send the information
     console.log(cardData.value);
   }
 
-  initCardForm() {
+  initCardForm(): void {
     this.cardData = new FormGroup({
       cardNumber: new FormControl(''),
       cardName: new FormControl(''),
@@ -66,14 +66,14 @@ export class CardFormComponent implements OnInit, OnDestroy {
   }
 
   detectBackSpaceName = (ev: any) => {
-    this.deletLastCharacterUpdate = ev.key === 'Backspace'; 
+    this.deletLastCharacterUpdate = ev.key === 'Backspace';
   }
 
   getNewCardNumberValue(ev: any): any {
     const currentValue = this.cardData.value.cardNumber;
     if (ev.key === 'Backspace') {
       this.deletNumber = Math.random();
-      if(currentValue === '') {
+      if (currentValue === '') {
         this.cardNumberUpdated = 'empty';
       } else {
         this.passNumberFormated(currentValue);
@@ -87,15 +87,15 @@ export class CardFormComponent implements OnInit, OnDestroy {
 
   passCardType = (val) => {
     const cardType = this.checkCardNumber.getCardNumberType(val);
-    if(cardType !== '') {
+    if (cardType !== '') {
       this.cardTypeUpdated = cardType;
     }
   }
-  
+
   passNumberFormated = (val) => {
     const formatedNumber = this.checkCardNumber.transformNumberDigits(val);
     // add "***" to number on card display
-    if(formatedNumber) {
+    if (formatedNumber) {
       this.cardNumberUpdated = formatedNumber;
     } else {
       this.cardNumberUpdated = val;
@@ -104,10 +104,10 @@ export class CardFormComponent implements OnInit, OnDestroy {
 
   formatWithSpaces = (val) => {
     let newValue = val;
-    if(val.length > 3) {
+    if (val.length > 3) {
       newValue = this.usePipeToFormat.transform(val);
     }
-    this.cardData.controls["cardNumber"].setValue(newValue.trim());
+    this.cardData.controls.cardNumber.setValue(newValue.trim());
     return newValue;
   }
 }

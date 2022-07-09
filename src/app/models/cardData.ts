@@ -4,6 +4,6 @@ export interface CardData {
   expiration: {
     expiringMonth: string;
     expiringYear: string;
-  },
+  };
   cvv: string;
 }

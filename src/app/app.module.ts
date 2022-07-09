@@ -11,13 +11,13 @@ import { CardNumberPipe } from './pipes/card-number.pipe';
   declarations: [
     AppComponent,
     CardFormComponent,
-    CreditCardComponent, 
+    CreditCardComponent,
     CardNumberPipe,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule
   ],
   providers: [CardNumberPipe],
   bootstrap: [AppComponent]

@@ -13,58 +13,58 @@ export class ValidateCardNumberService {
 
   getCardNumberType = (cardNumber: string) => {
     const sanitizedValue = cardNumber.replace(/[^0-9]/gi, '');
-    let cardType= '';
+    let cardType = '';
 
     if (this.visaRegEx.test(sanitizedValue)) {
       cardType = CARD_TYPES[0];
-    } else if(this.mastercardRegEx.test(sanitizedValue)) {
+    } else if (this.mastercardRegEx.test(sanitizedValue)) {
       cardType = CARD_TYPES[1];
-    } else if(this.amexpRegEx.test(sanitizedValue)) {
+    } else if (this.amexpRegEx.test(sanitizedValue)) {
       cardType = CARD_TYPES[2];
-    } else if(this.discovRegEx.test(sanitizedValue)) {
+    } else if (this.discovRegEx.test(sanitizedValue)) {
       cardType = CARD_TYPES[3];
-    } else if(this.dinersRegEx.test(sanitizedValue)) {
+    } else if (this.dinersRegEx.test(sanitizedValue)) {
       cardType = CARD_TYPES[4];
     }
     return cardType;
   }
 
-  transformNumberDigits = (cardNumber: string) => {   
+  transformNumberDigits = (cardNumber: string) => {
     const separateCharacters = cardNumber.split('');
     const cleanCharts = this.cleanSpaces(separateCharacters);
     const modifyCharts = this.replaceNumbers(cleanCharts);
     const separateBlocks = this.separateBlocks(modifyCharts);
-    if(separateBlocks) {
+    if (separateBlocks) {
       return separateBlocks;
     }
   }
 
   private cleanSpaces = (characters: Array<string>) => {
     const cleanCharts = characters.filter((char) => {
-      if(char !== ' ') {
-        return char; 
+      if (char !== ' ') {
+        return char;
       }
     });
     return cleanCharts;
   }
 
   private replaceNumbers = (cleanCharts) => {
-    let modifyCharts = [];
-    if(cleanCharts.length > 4) {
+    const modifyCharts = [];
+    if (cleanCharts.length > 4) {
       cleanCharts.map((char, i) => {
         if (i > 3 && i < 12) {
-          modifyCharts.push('*')
+          modifyCharts.push('*');
         } else {
-          modifyCharts.push(char)
+          modifyCharts.push(char);
         }
-      })
+      });
     }
     return modifyCharts;
   }
 
   private separateBlocks = (modifyCharts) => {
     const parts = [];
-    if(modifyCharts.length === 0) return
+    if (modifyCharts.length === 0) { return; }
     for (let i = 0, len = modifyCharts.length; i < len; i += 4) {
       parts.push(modifyCharts.slice(i, i + 4));
     }
@@ -73,7 +73,7 @@ export class ValidateCardNumberService {
   }
 
   private joinBlocks = (parts) => {
-    if(parts.length < 1) return
+    if (parts.length < 1) { return; }
     const joinBlocks = parts.map(arr => arr.join(''));
     return joinBlocks.join(' ');
   }

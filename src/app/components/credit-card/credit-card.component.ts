@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2, AfterViewChecked  } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CardData } from '../../models/cardData';
-import { CARD_NAME_DEFAULT, 
-  CARD_NUMBER_DEFAULT, 
-  BORDER_ANIMATION_OPTIONS, 
+import { CARD_NAME_DEFAULT,
+  CARD_NUMBER_DEFAULT,
+  BORDER_ANIMATION_OPTIONS,
   DATE_ANIMATION_OPTIONS,
   CARD_TYPES,
   CARD_LOGOS_CLASSES,
@@ -15,7 +15,7 @@ import { CARD_NAME_DEFAULT,
   templateUrl: './credit-card.component.html',
   styleUrls: ['./credit-card.component.css']
 })
-export class CreditCardComponent implements OnInit {
+export class CreditCardComponent implements OnInit, AfterViewChecked {
   cardNumber = CARD_NUMBER_DEFAULT;
   cardName = CARD_NAME_DEFAULT;
   expMonth = '';
@@ -36,8 +36,8 @@ export class CreditCardComponent implements OnInit {
 
 
   @Input() set updateCardNumber(data: string) {
-    if(!data) return
-    if(data === 'empty') {
+    if (!data) { return; }
+    if (data === 'empty') {
       this.cleanNumberPlace();
       this.createNumbersPlacesholders();
     } else {
@@ -54,15 +54,15 @@ export class CreditCardComponent implements OnInit {
   }
 
   @Input() set updateCardName(data: string) {
-    if(this.removingLastChild) {
+    if (this.removingLastChild) {
       this.removeLastCharacter();
       if (data.length === 0) {
         this.cardName = CARD_NAME_DEFAULT;
         return;
       }
-      return
+      return;
     }
-    if(!data) return
+    if (!data) { return; }
     this.processCardName(data);
   }
 
@@ -70,13 +70,13 @@ export class CreditCardComponent implements OnInit {
     this.removingLastChild = remove;
   }
 
-  @Input() set updateExpDate(data: CardData["expiration"]) {
-    if (!data) return
+  @Input() set updateExpDate(data: CardData['expiration']) {
+    if (!data) { return; }
     this.processExpDate(data);
   }
 
   @Input() set updateCVV(data: string) {
-    if (!data) return
+    if (!data) { return; }
     this.processCVV(data);
   }
 
@@ -87,43 +87,43 @@ export class CreditCardComponent implements OnInit {
   @ViewChild('cardNamePlace', { read: ElementRef }) cardNamePlace: ElementRef;
   @ViewChild('cardNumberPlace', { read: ElementRef }) cardNumberPlace: ElementRef;
 
-  constructor( private renderer:Renderer2 ) { }
+  constructor( private renderer: Renderer2 ) { }
 
   ngOnInit(): void {
     this.cvvInputGroup = new FormGroup({
       cvvShow: new FormControl()
    });
   }
-  
-  ngAfterViewChecked() {
-    if(this.cardNumberPlace && !this.numberPlaceHolderCreated) {
+
+  ngAfterViewChecked(): void {
+    if (this.cardNumberPlace && !this.numberPlaceHolderCreated) {
       this.createNumbersPlacesholders();
       this.numberPlaceHolderCreated = true;
     }
   }
 
   processCardType = (data: string) => {
-    switch(data) {
+    switch (data) {
       case CARD_TYPES[0]:
         this.cardLogoClass = CARD_LOGOS_CLASSES[0];
         this.cardLogoPath = CARD_LOGOS_PATH[0];
-        break
+        break;
       case CARD_TYPES[1]:
         this.cardLogoClass = CARD_LOGOS_CLASSES[1];
         this.cardLogoPath = CARD_LOGOS_PATH[1];
-        break
+        break;
       case CARD_TYPES[2]:
         this.cardLogoClass = CARD_LOGOS_CLASSES[2];
         this.cardLogoPath = CARD_LOGOS_PATH[2];
-        break
+        break;
       case CARD_TYPES[3]:
         this.cardLogoClass = CARD_LOGOS_CLASSES[3];
         this.cardLogoPath = CARD_LOGOS_PATH[3];
-        break
+        break;
       case CARD_TYPES[4]:
         this.cardLogoClass = CARD_LOGOS_CLASSES[4];
         this.cardLogoPath = CARD_LOGOS_PATH[4];
-        break
+        break;
       default:
         this.cardLogoPath = this.cardLogoDefaultPath;
         this.cardLogoClass = this.cardLogoDefaultClass;
@@ -143,40 +143,40 @@ export class CreditCardComponent implements OnInit {
 
   animateCardNumber = () => {
     this.replaceHashWithNumber();
-    return
+    return;
   }
 
   replaceHashWithNumber = () => {
     const separateCharacters = this.cardNumber.split('');
-    const lastCharacter = separateCharacters[separateCharacters.length -1];
-    if(lastCharacter === ' ') return
-    const index = separateCharacters.length -1;
+    const lastCharacter = separateCharacters[separateCharacters.length - 1];
+    if (lastCharacter === ' ') { return; }
+    const index = separateCharacters.length - 1;
     const placeholder = this.cardNumberPlace.nativeElement.children[index];
     const span = this.renderer.createElement('span');
     span.innerHTML = lastCharacter;
     span.className = 'card-number-span';
     const sidePosition = 15 * index;
     span.style.setProperty('left', `${sidePosition}px`);
-    if(!placeholder) return
+    if (!placeholder) { return; }
     this.renderer.insertBefore(this.cardNumberPlace.nativeElement, span, placeholder);
     this.renderer.removeChild(this.cardNumberPlace.nativeElement, placeholder);
-    return
+    return;
   }
 
   replaceNumWithHash = () => {
-    if(!this.cardNumberPlace) return
+    if (!this.cardNumberPlace) { return; }
     const spanElements = this.cardNumberPlace.nativeElement.children;
-    const usedSpaced = Array.from(spanElements).slice(0, this.cardNumber.length +1);
-    const lastSpan = usedSpaced[usedSpaced.length -1];
+    const usedSpaced = Array.from(spanElements).slice(0, this.cardNumber.length + 1);
+    const lastSpan = usedSpaced[usedSpaced.length - 1];
     const index = usedSpaced.indexOf(lastSpan);
-    if(!lastSpan) return;
+    if (!lastSpan) { return; }
     const newSpan = this.renderer.createElement('span');
     this.keepBlankSpaces(lastSpan, usedSpaced, newSpan, index);
   }
-  
+
   keepBlankSpaces = (lastSpan, spansCollection, newSpan, index) => {
     Array.from(spansCollection).map((span: HTMLElement) => {
-      if(span.innerHTML === ' ' && span === lastSpan) {
+      if (span.innerHTML === ' ' && span === lastSpan) {
         newSpan.innerHTML = ' ';
       } else {
         newSpan.innerHTML = '#';
@@ -191,7 +191,7 @@ export class CreditCardComponent implements OnInit {
 
   cleanNumberPlace = () => {
     const spanElements = this.cardNumberPlace.nativeElement.children;
-    Array.from(spanElements).map((el:HTMLElement) => {
+    Array.from(spanElements).map((el: HTMLElement) => {
       this.renderer.removeChild(this.cardNumberPlace.nativeElement, el);
     });
   }
@@ -211,8 +211,8 @@ export class CreditCardComponent implements OnInit {
 
   processCardName = (data: string) => {
     this.cardName = '';
-    const separateCharacters = data.split('');  
-    const lastCharacter = separateCharacters[separateCharacters.length -1];
+    const separateCharacters = data.split('');
+    const lastCharacter = separateCharacters[separateCharacters.length - 1];
     this.spanGroup.push(lastCharacter);
     const span = this.renderer.createElement('span');
     span.innerHTML = lastCharacter;
@@ -226,7 +226,7 @@ export class CreditCardComponent implements OnInit {
   }
 
   removeLastCharacter = () => {
-    if(this.spanGroup.length === 0) return;
+    if (this.spanGroup.length === 0) { return; }
     this.spanGroup.splice(-1, 1);
     const lastChild = this.cardNamePlace.nativeElement.lastElementChild;
     this.renderer.removeChild(this.cardNamePlace.nativeElement, lastChild);
@@ -236,7 +236,7 @@ export class CreditCardComponent implements OnInit {
     this.expMonth = data.expiringMonth;
     this.animateBorder(BORDER_ANIMATION_OPTIONS[2]);
     this.animateDate(DATE_ANIMATION_OPTIONS[0]);
-    if(data.expiringYear) {
+    if (data.expiringYear) {
       this.expYear = data.expiringYear.substring(2, 4);
       this.animateDate(DATE_ANIMATION_OPTIONS[1]);
     }
@@ -246,16 +246,16 @@ export class CreditCardComponent implements OnInit {
     this.cvv = data;
     this.animateBorder('');
     this.animateCard();
-    this.cvvInputGroup.controls["cvvShow"].setValue(data);
+    this.cvvInputGroup.controls.cvvShow.setValue(data);
   }
 
   animateDate = (animation: string) => {
-    if(!this.monthPlaceholder) return
-    if(animation === DATE_ANIMATION_OPTIONS[0]) {
+    if (!this.monthPlaceholder) { return; }
+    if (animation === DATE_ANIMATION_OPTIONS[0]) {
       this.monthPlaceholder.nativeElement.classList.add('animate-date-out');
       this.monthContent.nativeElement.classList.add('animate-date-in');
     }
-    if(animation === DATE_ANIMATION_OPTIONS[1]) {
+    if (animation === DATE_ANIMATION_OPTIONS[1]) {
       this.yearPlaceholder.nativeElement.classList.add('animate-date-out');
       this.yearContent.nativeElement.classList.add('animate-date-in');
     }
@@ -263,26 +263,26 @@ export class CreditCardComponent implements OnInit {
 
   animateCard = () => {
     this.cardAnimatedClass = this.cardAnimatedClassDefault + 'card-animation';
-    document.addEventListener('click', ()=> {
+    document.addEventListener('click', () => {
       this.cardAnimatedClass = this.cardAnimatedClassDefault;
-    })
+    });
   }
 
   animateBorder = (position: string) => {
     this.animatedBorderClass = 'show';
-    switch(position) {
-      case BORDER_ANIMATION_OPTIONS[0]: 
+    switch (position) {
+      case BORDER_ANIMATION_OPTIONS[0]:
       this.animatedBorderClass = 'show start-position';
       break;
-      case BORDER_ANIMATION_OPTIONS[1]: 
+      case BORDER_ANIMATION_OPTIONS[1]:
       this.animatedBorderClass = 'show move-to-name-place';
       break;
-      case BORDER_ANIMATION_OPTIONS[2]: 
+      case BORDER_ANIMATION_OPTIONS[2]:
       this.animatedBorderClass = 'show move-to-date-place';
       break;
 
-      default: 
-      this.animatedBorderClass = this.animatedBorderDefaultClass; 
+      default:
+      this.animatedBorderClass = this.animatedBorderDefaultClass;
       break;
     }
   }
