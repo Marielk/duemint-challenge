@@ -19,11 +19,11 @@ export const CARD_TYPES = [
   "DINERS"
 ]
 export const CARD_LOGOS_CLASSES = [
-  "visa-logo",
-  "master-logo",
-  "amex-logo",
-  "discover-logo",
-  "diners-logo"
+  "visa-logo ",
+  "master-logo ",
+  "amex-logo ",
+  "discover-logo ",
+  "diners-logo "
 ]
 export const CARD_LOGOS_PATH = [
   "assets/visa_logo.png",

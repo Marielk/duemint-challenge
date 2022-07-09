@@ -27,7 +27,10 @@ La app podrá ser probada en el puerto 4200 (<http://localhost:4200/>)
 
 _Importante: Debe tener instalado Angular de forma global para ejecutar el servidor_
 
-Si lo desea puede obtener números de tarjetas de crédito para probar la mini app aquí 👉 [Paypal-examples]( https://www.paypalobjects.com/en_GB/vhelp/paypalmanager_help/credit_card_numbers.htm/)
+Si lo desea puede obtener números de tarjetas de crédito para probar la mini app aquí 👉 [Paypal-examples]( https://www.paypalobjects.com/en_GB/vhelp/paypalmanager_help/credit_card_numbers.htm)
+Nota: La tarjeta no está habilitada para pegar el número completo, por ahora solo funciona para introducir el número manualmente.
+
+-Este proyecto está en desarrollo, aún se puede mejorar y corregir, dejame tu feedback para seguir aprendiendo-
 
 ## Codeado por ✒️
 

@@ -28,9 +28,9 @@ export class CreditCardComponent implements OnInit {
   cardAnimatedClassDefault = 'card ';
   animatedBorderClass = this.animatedBorderDefaultClass;
   cardAnimatedClass = this.cardAnimatedClassDefault;
-  cardLogoDefaultPath = 'assets/visa_logo.png';
+  cardLogoDefaultPath = CARD_LOGOS_PATH[0];
   cardLogoPath = this.cardLogoDefaultPath;
-  cardLogoDefaultClass = 'visa-logo ';
+  cardLogoDefaultClass = CARD_LOGOS_CLASSES[0];
   cardLogoClass = this.cardLogoDefaultClass;
   numberPlaceHolderCreated = false;
 
@@ -87,8 +87,7 @@ export class CreditCardComponent implements OnInit {
   @ViewChild('cardNamePlace', { read: ElementRef }) cardNamePlace: ElementRef;
   @ViewChild('cardNumberPlace', { read: ElementRef }) cardNumberPlace: ElementRef;
 
-  constructor(private el: ElementRef, 
-    private renderer:Renderer2) { }
+  constructor( private renderer:Renderer2 ) { }
 
   ngOnInit(): void {
     this.cvvInputGroup = new FormGroup({
@@ -153,7 +152,7 @@ export class CreditCardComponent implements OnInit {
     if(lastCharacter === ' ') return
     const index = separateCharacters.length -1;
     const placeholder = this.cardNumberPlace.nativeElement.children[index];
-    let span = this.renderer.createElement('span');
+    const span = this.renderer.createElement('span');
     span.innerHTML = lastCharacter;
     span.className = 'card-number-span';
     const sidePosition = 15 * index;
@@ -171,7 +170,7 @@ export class CreditCardComponent implements OnInit {
     const lastSpan = usedSpaced[usedSpaced.length -1];
     const index = usedSpaced.indexOf(lastSpan);
     if(!lastSpan) return;
-    let newSpan = this.renderer.createElement('span');
+    const newSpan = this.renderer.createElement('span');
     this.keepBlankSpaces(lastSpan, usedSpaced, newSpan, index);
   }
   
@@ -200,7 +199,7 @@ export class CreditCardComponent implements OnInit {
   createNumbersPlacesholders = () => {
     const separateSpaces = CARD_NUMBER_DEFAULT.split('');
     separateSpaces.forEach((el, i) => {
-      let span = this.renderer.createElement('span');
+      const span = this.renderer.createElement('span');
       span.innerHTML = el;
       const sidePosition = 15 * i;
       span.style.setProperty('position', 'absolute');
@@ -215,7 +214,7 @@ export class CreditCardComponent implements OnInit {
     const separateCharacters = data.split('');  
     const lastCharacter = separateCharacters[separateCharacters.length -1];
     this.spanGroup.push(lastCharacter);
-    let span = this.renderer.createElement('span');
+    const span = this.renderer.createElement('span');
     span.innerHTML = lastCharacter;
     this.renderer.appendChild(this.cardNamePlace.nativeElement, span);
     span.className = 'card-holder-name-span';
